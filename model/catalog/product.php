@@ -959,6 +959,10 @@ class Product extends \Opencart\System\Engine\Model {
 
 		return $query->row;
 	}
+	public function updateOptionValueIsActive($productOptionValueId, $isActive): void
+	{
+		$this->db->query("UPDATE `" . DB_PREFIX . "product_option_value` SET `is_active` = '" . (int)$isActive . "' WHERE `product_option_value_id` = '" . (int)$productOptionValueId . "'");
+	}
 
 	public function getOptionValuesByOptionId(int $option_id): array {
 		$query = $this->db->query("SELECT DISTINCT `option_value_id` FROM `" . DB_PREFIX . "product_option_value` WHERE `option_id` = '" . (int)$option_id . "'");
